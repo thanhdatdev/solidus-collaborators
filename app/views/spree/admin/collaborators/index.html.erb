@@ -1,0 +1,121 @@
+<% content_for :page_title do %>
+  <%= I18n.t("spree.collaborators") %>
+<% end %>
+
+<% content_for :table_filter_title do %>
+  <% if can? :display, Spree::Collaborator %>
+    <%= I18n.t("spree.search") %>
+  <% end %>
+<% end %>
+
+<% content_for :table_filter do %>
+  <div data-hook="admin_reviews_index_search">
+    <%= search_form_for [:admin, @search] do |f| %>
+      <div class="alpha three columns">
+        <div class="field">
+          <%= f.label :name_cont, I18n.t("spree.name") %><br />
+          <%= f.text_field :name_cont, class: 'fullwidth' %>
+        </div>
+      </div>
+
+      <div class="seven columns">
+        <div class="field">
+          <%= f.label :address_cont, I18n.t("spree.address") -%><br/>
+          <%= f.text_field :address_cont, class: 'fullwidth'  -%>
+        </div>
+      </div>
+
+      <div class="seven columns">
+        <div class="field">
+          <%= f.label :phone_number_cont, I18n.t("spree.phone_number") -%><br/>
+          <%= f.text_field :phone_number_cont, class: 'fullwidth'  -%>
+        </div>
+      </div>
+
+      <div class="seven columns">
+        <div class="field">
+          <%= f.label :email_cont,I18n.t("spree.email") -%><br/>
+          <%= f.text_field :email_cont, class: 'fullwidth'  -%>
+        </div>
+      </div>
+
+      <div class="two columns omega">
+        <div class="field">
+          <%= f.label :sex_eq, I18n.t("spree.sex") -%><br/>
+          <%= f.select :sex_eq, [
+            ['Nam', true],
+            ['Nữ', false]
+            ], {}, class: 'select2 fullwidth'  -%>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+
+      <div class="form-buttons actions filter-actions" data-hook="admin_reviews_index_search_buttons">
+        <%= button_tag I18n.t("spree.search") %>
+      </div>
+    <%- end -%>
+  </div>
+<%- end -%>
+
+<%= paginate @collaborators, theme: "solidus_admin" %>
+
+<% if @collaborators.any? %>
+  <table class="index">
+    <colgroup>
+      <col style="width: 20%;">
+      <col style="width: 10%;">
+      <col style="width: 10%;">
+      <col style="width: 15%;">
+      <col style="width: 15%;">
+      <col style="width: 15%;">
+    </colgroup>
+    <thead>
+      <tr>
+        <th><%= Spree::Collaborator.human_attribute_name(:name) %></th>
+        <th><%= Spree::Collaborator.human_attribute_name(:address) %></th>
+        <th><%= Spree::Collaborator.human_attribute_name(:phone_number) %></th>
+        <th><%= Spree::Collaborator.human_attribute_name(:email) %></th>
+        <th><%= Spree::Collaborator.human_attribute_name(:sex) %></th>
+        <th><%= Spree::Collaborator.human_attribute_name(:created_at) %></th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- @collaborators.each do |collaborator| -%>
+        <tr id="<%= dom_id collaborator %>">
+          <td class="align-center">
+            <%= collaborator.name %>
+          </td>
+          <td class="align-center">
+            <%= collaborator.address%>
+          </td>
+          <td class="align-center">
+            <%= collaborator.phone_number %>
+          </td>
+          <td class="align-center">
+            <%= collaborator.email %>
+          </td>
+          <td class="align-center">
+            <%= collaborator.sex %>
+          </td>
+          <td class="align-center">
+            <%= l collaborator.created_at, format: :short %>
+          </td>
+          <td class="actions">
+            <% if can? :manage, Spree::Collaborator %>
+              <%= link_to_edit collaborator, no_text: true, class: 'edit' %>
+              <%= link_to_delete collaborator, no_text: true %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="no-objects-found">
+    <%= I18n.t("spree.no_results") %>
+  </div>
+<% end %>
+
+<%= paginate @collaborators, theme: "solidus_admin" -%>

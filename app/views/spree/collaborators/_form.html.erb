@@ -1,0 +1,36 @@
+<%= form_for collaborator, url: collaborators_path, html: { method: :post, multipart: true} do |f| %>
+  <%= render "spree/shared/error_messages", target: collaborator %>
+
+
+  <p class="review_name_field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, maxlength: "255", size: "50" %>
+  </p>
+
+  <p class="review_name_field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address, maxlength: "255", size: "50" %>
+  </p>
+
+  <p class="review_title_field">
+    <%= f.label :phone_number %><br />
+    <%= f.text_field :phone_number, maxlength: "255", size: "50" %>
+  </p>
+
+  <p class="form-group">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, maxlength: "255", size: "50" %>
+  </p>
+
+  <p class="review_name_field">
+    <%= f.label :sex %><br />
+    <%= f.select :sex, [
+      ['Nam', true],
+      ['Nữ', false]
+      ], {}, class: 'select2 fullwidth'  -%>
+  </p>
+
+  <p class="review_submit">
+    <%= f.submit I18n.t("spree.submit_your_collaborator"), class: "button bg_darkfirst" %>
+  </p>
+<% end %>

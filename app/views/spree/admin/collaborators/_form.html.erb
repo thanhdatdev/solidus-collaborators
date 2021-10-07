@@ -1,0 +1,28 @@
+<%= render "spree/shared/error_messages", target: @collaborator %>
+<%= f.field_container :name do %>
+  <%= f.label :name %><br />
+  <%= f.text_field :name, maxlength: "255", size: "60" %>
+<% end %>
+
+<%= f.field_container :address do %>
+  <%= f.label :address %><br />
+  <%= f.text_field :address, maxlength: "255", size: "60" %>
+<% end %>
+
+<%= f.field_container :phone_number do %>
+  <%= f.label :phone_number %><br />
+  <%= f.text_field :phone_number, maxlength: "255", size: "60" %>
+<% end %>
+
+<%= f.field_container :email do %>
+  <%= f.label :email %><br />
+  <%= mail_to @collaborator.email %>
+<% end %>
+
+<%= f.field_container :sex do %>
+  <%= f.label :sex %><br />
+  <%= f.select :sex, [
+    ['Nam', true],
+    ['Nữ', false]
+    ], {}, class: 'select2 fullwidth'  -%>
+<% end %>

@@ -1,0 +1,13 @@
+<div class="review" itemprop="reviews" itemscope="itemscope" itemtype="http://schema.org/Review">
+  <span itemprop="name"><%= collaborator.name %></span>
+  <span itemprop="name"><%= collaborator.email %></span>
+  <br/>
+  <span class="attribution"><%= I18n.t("spree.submitted_on") %>
+    <strong><%= l collaborator.created_at.to_date %></strong>
+  </span>
+  <meta itemprop="datePublished" content="<%= collaborator.created_at.to_date.to_s %>"/>
+
+  <div itemprop="reviewBody">
+    <h1>Register Collaborator SuccessFully</h1>
+  </div>
+</div>

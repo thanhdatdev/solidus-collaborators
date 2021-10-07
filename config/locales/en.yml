@@ -1,0 +1,18 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  spree:
+    name: Name
+    address: Address
+    phone_number: Phone Number
+    email: Email
+    sex: Sex
+    editing_collaborator_for_html: Edit Collaborator
+    submit_your_collaborator: Submit your collaborator
+    leave_us: Leave Us
+    collaborators: Collaborators Management
+    become_a_collaborator: Register to become a collaborator
+    admin:
+      tab:
+        collaborators: Collaborators
